@@ -5,51 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SEO Tool Form</title>
   <style>
-    body{font-family:Arial,sans-serif;max-width:560px;margin:40px auto;padding:20px}
-    h1{margin-bottom:12px}
-    input,textarea,button{width:100%;padding:12px;margin:0 0 12px;box-sizing:border-box;font:inherit}
-    textarea{min-height:140px;resize:vertical}
-    button{cursor:pointer;background:#111;color:#fff;border:none}
-    #status{margin-top:8px;color:#555}
+    body{
+      font-family:Arial,sans-serif;
+      max-width:900px;
+      margin:20px auto;
+      padding:20px;
+      background:#fff;
+      color:#111;
+    }
+    h1{
+      margin-bottom:8px;
+    }
+    p{
+      margin-top:0;
+      color:#555;
+    }
+    .form-wrap{
+      margin-top:20px;
+      border:1px solid #e5e5e5;
+      border-radius:12px;
+      overflow:hidden;
+    }
+    iframe{
+      width:100%;
+      height:900px;
+      border:0;
+      display:block;
+    }
+    @media (max-width: 768px){
+      iframe{
+        height:1100px;
+      }
+    }
   </style>
 </head>
 <body>
   <h1>SEO Tool Form</h1>
+  <p>Fill out the form below.</p>
 
-  <form id="gform">
-    <input name="entry.67257386" placeholder="Name" required />
-    <input name="entry.450492180" type="email" placeholder="Email" required />
-    <textarea name="entry.1531351596" placeholder="Query" required></textarea>
-    <button type="submit">Submit</button>
-  </form>
-
-  <p id="status"></p>
-
-  <script>
-    const form = document.getElementById('gform');
-    const status = document.getElementById('status');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      status.textContent = 'Submitting...';
-
-      const data = new FormData(form);
-
-      try {
-        await fetch('https://docs.google.com/forms/u/0/d/e/1FAIpQLSeVf86ILWS4t6f9Kx1bLmEVX3L1Q7q02ldwQwfM1TQWPSEqLw/formResponse', {
-          method: 'POST',
-          mode: 'no-cors',
-          body: data
-        });
-
-        form.reset();
-        status.style.color = 'green';
-        status.textContent = 'Submitted. Check Google Sheets to confirm.';
-      } catch (e) {
-        status.style.color = 'red';
-        status.textContent = 'Submission failed.';
-      }
-    });
-  </script>
+  <div class="form-wrap">
+    <iframe
+      src="https://docs.google.com/forms/d/e/1FAIpQLScUmrFFpg3E_XksNEd79p73Y0Ozc1tbUXoN4cHIRbPjSkG25w/viewform?embedded=true"
+      loading="lazy">
+      Loading…
+    </iframe>
+  </div>
 </body>
 </html>
